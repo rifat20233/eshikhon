@@ -36,10 +36,18 @@
         <div class="row">
           <div class="col-8">
             <h4>Blogs</h4>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} style="color: red;" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+
+                {% endfor %}
+            </ul>
+            {% endif %}            
             {% for data in table_data %}
             <div class="card text-center mb-4">
               <div class="card-header">
-                Featured
+                <a href="{% url 'delete_blogs_function' data.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
               </div>
               <!-- <img src="..." class="card-img-top" alt="..."> -->
               <div class="card-body">
@@ -48,7 +56,7 @@
                 <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
               </div>
               <div class="card-footer text-body-secondary">
-                2 days ago
+                {{data.created_at}}
               </div>
             </div>
             {% endfor %}
