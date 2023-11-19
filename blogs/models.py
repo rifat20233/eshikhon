@@ -6,3 +6,6 @@ class Blogtable(models.Model):
     content = models.TextField(null=False,blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     # imageField = models.ImageField(upload_to='/image',null=True,blank=True)
+
+    def __str__(self):
+        return self.subject
