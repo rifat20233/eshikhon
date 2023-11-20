@@ -20,4 +20,6 @@ def login_page(request):
             messages.error(request,"Username or password did not match")
             return render(request,'login.html')
 
-        
+def logout_session(request):
+    auth.logout(request)
+    return redirect('login_page')   
