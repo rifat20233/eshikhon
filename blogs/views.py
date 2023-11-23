@@ -6,8 +6,9 @@ from django.contrib import messages
 def save_blogs(request):
     subject_name = request.POST['subject']
     contents_name = request.POST['content']
+    image_data = request.FILES['image_upload']
     try:
-        Blogtable.objects.create(subject=subject_name,content=contents_name)
+        Blogtable.objects.create(subject=subject_name,content=contents_name,imageField=image_data)
     except Exception as e:
         print(str(e))
     return redirect('dashboard_url')

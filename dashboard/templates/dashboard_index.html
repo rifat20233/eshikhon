@@ -55,7 +55,7 @@
                 <a href="{% url 'delete_blogs_function' data.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                 <a href="{% url 'update_blogs_function' data.id %}"><button type="button" class="btn btn-primary" id="updatebutton">Update</button></a>
               </div>
-              <!-- <img src="..." class="card-img-top" alt="..."> -->
+              <img src="{{ data.imageField.url }}" style="height: 50%;" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{ data.subject }}</h5>
                 <p class="card-text">{{ data.content }}</p>
@@ -69,15 +69,19 @@
           </div>
           </div class="col-4">
           <h4>Entry Form</h4>
-            <form method="post" action="{% url 'save_blogs_function' %}">
-              {% csrf_token  %}
+            <form method="post" action="{% url 'save_blogs_function' %}" enctype="multipart/form-data">
+              {% csrf_token %}
               <div class="mb-3">
                   <label for="formGroupExampleInput" class="form-label">Blog Subject</label>
                   <input type="text" name="subject" class="form-control" id="formGroupExampleInput" placeholder="Blog Subject">
-                </div>
-                <div class="mb-3">
+              </div>
+              <div class="mb-3">
                   <label for="formGroupExampleInput2" class="form-label">Blog Content</label>
                   <input type="text" name="content" class="form-control" id="formGroupExampleInput2" placeholder="Blog Content">
+                </div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Upload Image</label>
+                  <input class="form-control" name="image_upload" required type="file" id="formFile">
                 </div>
                 <button type="submit" class="btn btn-success">Save</button>
             </form>
